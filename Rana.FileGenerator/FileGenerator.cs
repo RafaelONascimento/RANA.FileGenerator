@@ -27,8 +27,8 @@ namespace Rana.FileGenerator
             StringBuilder content = new StringBuilder();
             List<dynamic> fields = new List<dynamic>();
 
-            fields.AddRange(this.GetType().GetFields().OfType<IContent>());
-            fields.AddRange(this.GetType().GetFields().OfType<IGenerator>());
+            fields.AddRange(this.GetType().GetProperties().OfType<IContent>());
+            fields.AddRange(this.GetType().GetProperties().OfType<IGenerator>());
 
             foreach (dynamic field in fields)
             {

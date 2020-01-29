@@ -23,5 +23,10 @@ namespace Rana.FileGenerator.Util
 
             return (size > 0 ? value.Substring(Math.Max(0, size - maxSize), Math.Min(size, maxSize)) : value);
         }
+
+        public static string SubstringBooleanValue(int initialPosition, int finalPosition, string value)
+        {
+            return value == "True" ? "1" : "0";
+        }
     }
 }

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -25,16 +26,17 @@ namespace Rana.FileGenerator
         public virtual string Generate(string label = "", string separator = null, bool? separatorAtBegining = null, bool? separatorAtEnd = null)
         {
             List<string> content = new List<string>();
-            string contentSeparator = separator ?? Separator;
+            string contentSeparator = separator ?? string.Empty;
             string contentLabel = (label.Length > 0) ? contentSeparator + label + contentSeparator :separator;
 
-            foreach (FieldInfo field in this.GetType().GetFields().Where(x => x.GetCustomAttributes(typeof(Value), true).Any())
-                                                                  .OrderBy(x => (x.GetCustomAttributes(typeof(Value)).First() as Value).Index))
+            foreach (PropertyInfo field in this.GetType().GetProperties().Where(x => x.GetCustomAttributes(typeof(Value), true).Any())
+                                                                  .OrderBy(x => (x.GetCustomAttributes(typeof(Value), true).First() as Value).Index))
             {
-                content.Add(Separator + field.GetCustomAttribute<Value>().Generate(field.GetValue(this)));
+
+                content.Add(Separator + (field.GetCustomAttributes(typeof(Value), true).First() as Value).Generate(field.GetValue(this, null)));
             }
 
-            return string.Join(contentSeparator, content) + ((separatorAtEnd ?? SeparatorAtEnd) ? contentSeparator : "") ;
+            return ((separatorAtBegining ?? false) ? contentSeparator : "") + string.Join(contentSeparator, content) + ((separatorAtEnd ?? false) ? contentSeparator : "") ;
         }
     }
 }

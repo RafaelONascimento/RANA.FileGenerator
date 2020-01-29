@@ -14,9 +14,15 @@ namespace Rana.FileGenerator.Attributes
         {
         }
 
+        public StringValue(int index, int initialPosition = -1, int finalPosition = -1) : base(index, initialPosition, finalPosition)
+        {
+        }
+
         public override string Generate(dynamic value)
         {
-            return base.Generate(StringUtil.SubstringStringValue(_initialPosition,_finalPosition,value as string));
+            string v = Convert.ToString(value);
+
+            return base.Generate(StringUtil.SubstringStringValue(_initialPosition,_finalPosition,v));
         }
     }
 }
