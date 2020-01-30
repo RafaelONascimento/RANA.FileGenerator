@@ -1,6 +1,6 @@
 # RANA.FileGenerator
  Rana.FileGenerator is a library to simplify the generation of structured text files. Using an easily approach to make life easier.
- RANA uses customs annotations  to mark how you want to generate each field/property of a class, and its follow the rules in generation.
+ RANA uses customs annotations  to mark how do you want to generate each field/property of a class, and it follows the rules in generation.
  
  ## Example
  
