@@ -1,5 +1,6 @@
 using Rana.FileGenerator.Tests.TestsClasses;
 using System;
+using System.Text;
 using Xunit;
 
 namespace Rana.FileGenerator.Tests
@@ -70,6 +71,53 @@ namespace Rana.FileGenerator.Tests
             };
 
             Assert.Equal("92,752", testObject.Generate());
+        }
+
+        [Fact]
+        public void GenerateReadmeExample()
+        {
+            ExampleReadme testObject = new ExampleReadme
+            {
+                Description = "Product",
+                Id = 1,
+                Name = "Name",
+                Price = 15.13M,
+                DateAdded = new DateTime(2020, 01, 29)
+            };
+
+            ListFileContent<ExampleReadme> linesOfTheFIle = new ListFileContent<ExampleReadme>();
+            linesOfTheFIle.Generate("Product", "|", separatorAtBegining: true, separatorAtEnd: true);
+
+            Assert.Equal("|Product|00001|Name_____|00015,13|01/29/2020|", testObject.Generate("Product","|",separatorAtBegining: true,separatorAtEnd: true));
+        }
+        [Fact]
+        public void GenerateListReadmeExample()
+        {
+            ListFileContent<ExampleReadme> linesOfTheFile = new ListFileContent<ExampleReadme>();
+
+            linesOfTheFile.Add(new ExampleReadme
+            {
+                Description = "Product",
+                Id = 1,
+                Name = "Name",
+                Price = 15.13M,
+                DateAdded = new DateTime(2020, 01, 29)
+            });
+
+            linesOfTheFile.Add(new ExampleReadme
+            {
+                Description = "Product",
+                Id = 1,
+                Name = "Name",
+                Price = 20.95M,
+                DateAdded = new DateTime(2020, 01, 29)
+            });
+
+            StringBuilder correctAnswer = new StringBuilder();
+            correctAnswer.AppendLine("|Product|00001|Name_____|00015,13|01/29/2020|");
+            correctAnswer.AppendLine("|Product|00001|Name_____|00020,95|01/29/2020|");
+
+            Assert.Equal(correctAnswer.ToString(), linesOfTheFile.Generate("Product", "|", separatorAtBegining: true, separatorAtEnd: true));
         }
     }
 }

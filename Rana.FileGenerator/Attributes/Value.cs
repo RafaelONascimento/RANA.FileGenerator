@@ -10,40 +10,41 @@ namespace Rana.FileGenerator.Attributes
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property)]
     public abstract class Value : Attribute
     {
-        protected int _initialPosition;
-        protected int _finalPosition;
-        private PaddingOrientation _paddingOrientation;
-        private char _paddingChar;
+        public int InitialPosition = -1;
+        public int FinalPosition = -1;
+        public int Size = -1;
+        public PaddingOrientation PaddingOrientation;
+        public char PaddingChar;
         private readonly bool _ignorePadding = false;
         public int Index { get; set; }
 
-        public Value(int index, int initialPosition = -1, int finalPosition = -1)
+        public Value(int index = 0, int initialPosition = -1, int finalPosition = -1)
         {
-            _initialPosition = initialPosition;
-            _finalPosition = finalPosition;
+            InitialPosition = initialPosition;
+            FinalPosition = finalPosition;
             Index = index;
             _ignorePadding = true;
         }
 
-        public Value(int index, int initialPosition = -1, int finalPosition = -1, PaddingOrientation paddingOrientation = PaddingOrientation.Left, char paddingChar=' ')
+        public Value(int index = 0, int initialPosition = -1, int finalPosition = -1, PaddingOrientation paddingOrientation = PaddingOrientation.Left, char paddingChar=' ')
         {
-            _initialPosition = initialPosition;
-            _finalPosition = finalPosition;
-            _paddingOrientation = paddingOrientation;
-            _paddingChar = paddingChar;
+            InitialPosition = initialPosition;
+            FinalPosition = finalPosition;
+            PaddingOrientation = paddingOrientation;
+            PaddingChar = paddingChar;
             Index = index;
         }
 
         private string PadText(string text)
         {
-            int size = _finalPosition - _initialPosition;
+            int size =(Size >=0) ? Size :  FinalPosition - InitialPosition;
 
             if (_ignorePadding)
             {
                 return text.Length > size ?  text.Substring(0, size) : text; 
             }            
 
-            return (_paddingOrientation == PaddingOrientation.Left) ? text.PadLeft(size, _paddingChar) : text.PadRight(size, _paddingChar);
+            return (PaddingOrientation == PaddingOrientation.Left) ? text.PadLeft(size, PaddingChar) : text.PadRight(size, PaddingChar);
         }
 
         public virtual string Generate(dynamic value)

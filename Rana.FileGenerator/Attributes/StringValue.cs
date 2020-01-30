@@ -10,11 +10,7 @@ namespace Rana.FileGenerator.Attributes
 {
     public class StringValue : Value
     {
-        public StringValue(int index, int initialPosition = -1, int finalPosition = -1, PaddingOrientation paddingOrientation = PaddingOrientation.Left, char paddingChar = ' ') : base(index,initialPosition, finalPosition, paddingOrientation, paddingChar)
-        {
-        }
-
-        public StringValue(int index, int initialPosition = -1, int finalPosition = -1) : base(index, initialPosition, finalPosition)
+        public StringValue(int index = 0, int initialPosition = -1, int finalPosition = -1, PaddingOrientation paddingOrientation = PaddingOrientation.Left, char paddingChar = ' ') : base(index,initialPosition, finalPosition, paddingOrientation, paddingChar)
         {
         }
 
@@ -22,7 +18,7 @@ namespace Rana.FileGenerator.Attributes
         {
             string v = Convert.ToString(value);
 
-            return base.Generate(StringUtil.SubstringValue(_initialPosition,_finalPosition,v));
+            return base.Generate(StringUtil.SubstringValue(InitialPosition,FinalPosition,v));
         }
     }
 }

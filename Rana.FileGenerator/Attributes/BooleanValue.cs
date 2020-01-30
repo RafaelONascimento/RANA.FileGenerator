@@ -11,7 +11,7 @@ namespace Rana.FileGenerator.Attributes
 
         public override string Generate(dynamic value)
         {
-            return base.Generate(StringUtil.SubstringBooleanValue(_initialPosition, _finalPosition, ((bool)value).ToString()));
+            return base.Generate(StringUtil.SubstringBooleanValue(InitialPosition, FinalPosition, ((bool)value).ToString()));
         }
     }
 }

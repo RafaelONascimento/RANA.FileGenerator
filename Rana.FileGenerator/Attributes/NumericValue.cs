@@ -10,13 +10,13 @@ namespace Rana.FileGenerator.Attributes
 {
     public class NumericValue : Value
     {
-        public NumericValue(int index, int initialPosition = -1, int finalPosition = -1, PaddingOrientation paddingOrientation = PaddingOrientation.Left, char paddingChar = ' ') : base(index, initialPosition, finalPosition, paddingOrientation, paddingChar)
+        public NumericValue(int index = 0, int initialPosition = -1, int finalPosition = -1, PaddingOrientation paddingOrientation = PaddingOrientation.Left, char paddingChar = ' ') : base(index, initialPosition, finalPosition, paddingOrientation, paddingChar)
         {
         }
 
         public override string Generate(dynamic value)
         {
-            return base.Generate(StringUtil.SubstringNumericValue(_initialPosition, _finalPosition, ((int)value).ToString()));
+            return base.Generate(StringUtil.SubstringNumericValue((Size >= 0) ? Size : FinalPosition - InitialPosition, ((int)value).ToString()));
         }
     }
 }

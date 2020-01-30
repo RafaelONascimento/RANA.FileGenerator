@@ -16,9 +16,8 @@ namespace Rana.FileGenerator.Util
             return (maxSize > 0) ? (value as string).Substring(0, Math.Min(size, maxSize)) : value;
         }
 
-        public static string SubstringNumericValue(int initialPosition, int finalPosition, string value)
+        public static string SubstringNumericValue(int maxSize, string value)
         {
-            int maxSize = finalPosition - initialPosition;
             int size = value.Length;
 
             return (size > 0 ? value.Substring(Math.Max(0, size - maxSize), Math.Min(size, maxSize)) : value);
