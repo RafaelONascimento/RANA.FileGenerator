@@ -22,7 +22,7 @@ namespace Rana.FileGenerator.Attributes
         {
             string v = Convert.ToString(value);
 
-            return base.Generate(StringUtil.SubstringStringValue(_initialPosition,_finalPosition,v));
+            return base.Generate(StringUtil.SubstringValue(_initialPosition,_finalPosition,v));
         }
     }
 }

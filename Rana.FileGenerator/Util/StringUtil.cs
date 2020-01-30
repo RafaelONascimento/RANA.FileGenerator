@@ -8,7 +8,7 @@ namespace Rana.FileGenerator.Util
 {
    public static class StringUtil
     {
-        public static string SubstringStringValue(int initialPosition, int finalPosition,string value)
+        public static string SubstringValue(int initialPosition, int finalPosition,string value)
         {
             int maxSize = finalPosition - initialPosition;
             int size = value.Length;

@@ -11,13 +11,13 @@ namespace WindowsFormsApp1
 {
     public class SPED : LineContent
     {
-        [NumericValue(0,0,4,PaddingOrientation.Left,'0')]
-        public int Codigo;
+        [NumericValue(0, 0, 4, PaddingOrientation.Left, '0')]
+        public int Codigo { get; set; }
 
         [StringValue(1, 5, 7, PaddingOrientation.Left, ' ')]
-        public string Nome;
+        public string Nome { get; set; }
 
-        [DecimalValue(2, 8, 40, PaddingOrientation.Right, '+', 2,false)]
-        public decimal Valor;
+        [DecimalValue(2, 8, 40, PaddingOrientation.Right, '+', 2, false)]
+        public decimal Valor { get; set; }
     }
 }

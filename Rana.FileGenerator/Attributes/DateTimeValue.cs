@@ -19,7 +19,7 @@ namespace Rana.FileGenerator.Attributes
 
         public override string Generate(dynamic value)
         {
-            return base.Generate(StringUtil.SubstringStringValue(_initialPosition,_finalPosition,((DateTime)value).ToString(_dateFormat)));
+            return base.Generate(StringUtil.SubstringValue(_initialPosition,_finalPosition,((DateTime)value).ToString(_dateFormat)));
         }
 
     }

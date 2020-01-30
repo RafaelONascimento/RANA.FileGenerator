@@ -81,7 +81,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Rana.FileGenerator\Rana.FileGenerator.csproj">
-      <Project>{370ABAA9-6922-48F1-B3CC-1AC51AE8971D}</Project>
+      <Project>{370abaa9-6922-48f1-b3cc-1ac51ae8971d}</Project>
       <Name>Rana.FileGenerator</Name>
     </ProjectReference>
   </ItemGroup>
