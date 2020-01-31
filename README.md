@@ -43,7 +43,7 @@ testObject.Generate("Product","|",separatorAtBegining: true,separatorAtEnd: true
 ```
 
 #### Calling generation of multiples lines
-The example showed how to generate one line, but if you want to generate the how file, there is a list called ListFileContent that do it for you. Following example:
+The example showed how to generate one line, but if you want to generate the whole file, there is a list called ListFileContent that do it for you. Following example:
 
 ```C#
 ListFileContent<ExampleReadme> linesOfTheFile = new ListFileContent<ExampleReadme>();
