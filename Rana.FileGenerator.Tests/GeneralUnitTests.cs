@@ -70,7 +70,7 @@ namespace Rana.FileGenerator.Tests
                 Value = 92.75154M
             };
 
-            Assert.Equal("92,752", testObject.Generate());
+            Assert.Equal((92.752).ToString("N3"), testObject.Generate());
         }
 
         [Fact]
@@ -88,7 +88,7 @@ namespace Rana.FileGenerator.Tests
             ListFileContent<ExampleReadme> linesOfTheFIle = new ListFileContent<ExampleReadme>();
             linesOfTheFIle.Generate("Product", "|", separatorAtBegining: true, separatorAtEnd: true);
 
-            Assert.Equal("|Product|00001|Name_____|00015,13|01/29/2020|", testObject.Generate("Product","|",separatorAtBegining: true,separatorAtEnd: true));
+            Assert.Equal($"|Product|00001|Name_____|000{(15.13).ToString("N2")}|01/29/2020|", testObject.Generate("Product","|",separatorAtBegining: true,separatorAtEnd: true));
         }
         [Fact]
         public void GenerateListReadmeExample()
@@ -114,8 +114,8 @@ namespace Rana.FileGenerator.Tests
             });
 
             StringBuilder correctAnswer = new StringBuilder();
-            correctAnswer.AppendLine("|Product|00001|Name_____|00015,13|01/29/2020|");
-            correctAnswer.AppendLine("|Product|00001|Name_____|00020,95|01/29/2020|");
+            correctAnswer.AppendLine($"|Product|00001|Name_____|000{(15.13).ToString("N2")}|01/29/2020|");
+            correctAnswer.AppendLine($"|Product|00001|Name_____|000{(20.95).ToString("N2")}|01/29/2020|");
 
             Assert.Equal(correctAnswer.ToString(), linesOfTheFile.Generate("Product", "|", separatorAtBegining: true, separatorAtEnd: true));
         }
